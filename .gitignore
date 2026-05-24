@@ -32,3 +32,6 @@ venv/
 # IDE
 .idea/
 .vscode/
+
+# Notes
+KTC_note/
