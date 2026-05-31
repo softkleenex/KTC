@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minimalist Productivity Todo</title>
+  <!-- Modern Typography (Inter Font) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- App Header -->
+    <header class="app-header">
+      <h1 class="app-title">Minimalist Tasks</h1>
+      <p class="app-subtitle">오늘의 할 일을 깔끔하게 관리해보세요.</p>
+    </header>
+
+    <!-- Weekly View Panel -->
+    <section class="weekly-view">
+      <div class="weekly-header">
+        <button id="btn-prev-week" class="btn-nav-week" aria-label="이전 주">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+        <span id="week-title" class="week-title">2026년 5월</span>
+        <button id="btn-next-week" class="btn-nav-week" aria-label="다음 주">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Monday-Sunday Grid of Days -->
+      <div id="weekly-days-grid" class="weekly-days-grid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- Main Todo Card Container -->
+    <main class="todo-card">
+      <!-- Daily Date Navigation -->
+      <div class="daily-nav">
+        <button id="btn-prev-day" class="btn-nav-day" aria-label="이전 날짜">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+        <div class="selected-date-container">
+          <span id="selected-date-text" class="selected-date-text">2026년 5월 30일 (토)</span>
+          <button id="btn-today" class="btn-today">오늘로 이동</button>
+        </div>
+        <button id="btn-next-day" class="btn-nav-day" aria-label="다음 날짜">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Status Filter Tabs -->
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all">전체</button>
+        <button class="filter-tab" data-filter="active">진행 중</button>
+        <button class="filter-tab" data-filter="completed">완료</button>
+      </div>
+
+      <!-- Todo Create Form -->
+      <form id="todo-form" class="todo-form" novalidate>
+        <div class="input-group">
+          <input 
+            type="text" 
+            id="todo-input" 
+            placeholder="이 날짜에 할 일을 입력하세요..." 
+            autocomplete="off"
+          >
+          <button type="submit" class="btn-add" aria-label="추가">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="icon-plus">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+            <span>추가</span>
+          </button>
+        </div>
+        <!-- Input Validation Message -->
+        <p id="error-message" class="error-message" aria-live="polite"></p>
+      </form>
+
+      <!-- Todo List Container -->
+      <ul id="todo-list" class="todo-list">
+        <!-- Rendered dynamically by app.js -->
+      </ul>
+      
+      <!-- Empty State View -->
+      <div id="empty-state" class="empty-state">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="empty-icon">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-.621-.504-1.125-1.125-1.125H9.75M8.25 21h8.25g-8.25 0a1.5 1.5 0 0 1-1.5-1.5V3.75A1.5 1.5 0 0 1 8.25 2h8.25a1.5 1.5 0 0 1 1.5 1.5v15.75a1.5 1.5 0 0 1-1.5 1.5M8.25 21a1.5 1.5 0 0 0 1.5 1.5h8.25a1.5 1.5 0 0 0 1.5-1.5V3.75A1.5 1.5 0 0 0 16.5 2H8.25" />
+        </svg>
+        <p id="empty-state-text">선택한 날짜에 완료할 할 일이 없습니다.</p>
+      </div>
+    </main>
+  </div>
+  
+  <script src="app.js"></script>
+</body>
+</html>

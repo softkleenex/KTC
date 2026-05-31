@@ -1,0 +1,675 @@
+/* ==========================================
+   CSS Variables & Design Tokens
+   ========================================== */
+:root {
+  /* Main Color Scheme */
+  --primary-color: #672be0;
+  --primary-hover: #521eb8;
+  --primary-light: #f0ebfc;
+  
+  /* Background & Base Colors */
+  --bg-color: #f4f5f8;
+  --card-bg: #ffffff;
+  
+  /* Text Colors */
+  --text-primary: #1d1d1f;
+  --text-secondary: #6e6e73;
+  --text-muted: #aeaeb2;
+  
+  /* Borders and States */
+  --border-color: #e5e5ea;
+  --border-focus: #672be0;
+  --error-color: #ff3b30;
+  --success-color: #34c759;
+  
+  /* Geometry & Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  
+  /* Soft Minimalist Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 8px 24px rgba(103, 43, 224, 0.04);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.06);
+  
+  /* Timing Animations */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================
+   Reset & Base Styles
+   ========================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+/* ==========================================
+   Layout Containers
+   ========================================== */
+.app-container {
+  width: 100%;
+  max-width: 580px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.app-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+}
+
+.app-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.todo-card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md), var(--shadow-lg);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid rgba(103, 43, 224, 0.04);
+}
+
+/* ==========================================
+   Weekly View Panel
+   ========================================== */
+.weekly-view {
+  background-color: var(--card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm), var(--shadow-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid rgba(103, 43, 224, 0.04);
+}
+
+.weekly-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+
+.week-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.btn-nav-week {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.btn-nav-week:hover {
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+}
+
+.btn-nav-week svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Weekly Grid of 7 Days */
+.weekly-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.weekly-day-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 4px 6px 4px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+  user-select: none;
+}
+
+.weekly-day-cell:hover {
+  background-color: #f2f2f7;
+}
+
+/* Day Names (월, 화, 수) */
+.weekly-day-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+/* Saturday & Sunday color accents */
+.weekly-day-cell[data-day="6"] .weekly-day-name {
+  color: #007aff; /* Sat */
+}
+.weekly-day-cell[data-day="0"] .weekly-day-name {
+  color: #ff3b30; /* Sun */
+}
+
+/* Date Numbers (25, 26...) */
+.weekly-day-number {
+  font-size: 0.95rem;
+  font-weight: 700;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--text-primary);
+  transition: var(--transition-fast);
+}
+
+/* Today styles */
+.weekly-day-cell.today .weekly-day-number {
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+/* Selected Date styles */
+.weekly-day-cell.selected {
+  background-color: var(--primary-light);
+}
+
+.weekly-day-cell.selected .weekly-day-number {
+  background-color: var(--primary-color);
+  color: #ffffff !important;
+  box-shadow: 0 4px 10px rgba(103, 43, 224, 0.25);
+}
+
+/* Task count badge underneath date */
+.weekly-day-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  min-width: 16px;
+  height: 16px;
+  background-color: #e5e5ea;
+  color: var(--text-secondary);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  margin-top: 4px;
+  transition: var(--transition-fast);
+}
+
+/* Badge active styling when date has tasks */
+.weekly-day-badge.has-tasks {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+/* Selected day badge */
+.weekly-day-cell.selected .weekly-day-badge.has-tasks {
+  background-color: #ffffff;
+  color: var(--primary-color);
+}
+
+/* ==========================================
+   Daily Date Navigation
+   ========================================== */
+.daily-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 16px;
+}
+
+.btn-nav-day {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.btn-nav-day:hover {
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+}
+
+.btn-nav-day svg {
+  width: 20px;
+  height: 20px;
+}
+
+.selected-date-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.selected-date-text {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.btn-today {
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--primary-color);
+  background-color: var(--primary-light);
+  border: none;
+  padding: 4px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.btn-today:hover {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+/* ==========================================
+   Filter Tabs
+   ========================================== */
+.filter-tabs {
+  display: flex;
+  background-color: #f2f2f7;
+  padding: 4px;
+  border-radius: var(--radius-md);
+  gap: 4px;
+}
+
+.filter-tab {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filter-tab:hover {
+  color: var(--text-primary);
+}
+
+.filter-tab.active {
+  background-color: #ffffff;
+  color: var(--primary-color);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ==========================================
+   Todo Input Form
+   ========================================== */
+.todo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-group {
+  display: flex;
+  gap: 12px;
+  position: relative;
+}
+
+#todo-input {
+  flex: 1;
+  padding: 14px 18px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: #fafafa;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  outline: none;
+  transition: var(--transition-fast);
+}
+
+#todo-input:focus {
+  border-color: var(--border-focus);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(103, 43, 224, 0.15);
+}
+
+.btn-add {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 22px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: #ffffff;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  box-shadow: 0 4px 12px rgba(103, 43, 224, 0.2);
+}
+
+.btn-add:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(103, 43, 224, 0.3);
+}
+
+.btn-add:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(103, 43, 224, 0.2);
+}
+
+.icon-plus {
+  width: 18px;
+  height: 18px;
+}
+
+.error-message {
+  font-size: 0.85rem;
+  color: var(--error-color);
+  font-weight: 500;
+  min-height: 20px;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: var(--transition-fast);
+}
+
+.error-message.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================
+   Todo List & Items
+   ========================================== */
+.todo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Custom Scrollbar for list container */
+.todo-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.todo-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.todo-list::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+.todo-list::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  gap: 12px;
+  transition: all var(--transition-fast);
+  animation: slideIn var(--transition-normal);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.todo-item:hover {
+  border-color: rgba(103, 43, 224, 0.2);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+/* Left side of item (Checkbox & Text) */
+.todo-item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0; /* for text truncate */
+}
+
+/* Custom Checkbox Styling */
+.checkbox-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 22px;
+  width: 22px;
+  background-color: transparent;
+  border: 2px solid var(--text-muted);
+  border-radius: 50%;
+  transition: var(--transition-fast);
+}
+
+.checkbox-container:hover input ~ .checkmark {
+  border-color: var(--primary-color);
+  background-color: var(--primary-light);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-container .checkmark:after {
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Todo Text styling */
+.todo-text {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  word-break: break-all;
+  transition: var(--transition-fast);
+}
+
+/* Completed Todo item styling */
+.todo-item.completed {
+  background-color: #fafafa;
+  border-color: var(--border-color);
+  opacity: 0.7;
+}
+
+.todo-item.completed .todo-text {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
+/* Inline Edit Input */
+.todo-edit-input {
+  flex: 1;
+  padding: 6px 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  border: 2px solid var(--primary-color);
+  border-radius: var(--radius-sm);
+  outline: none;
+  color: var(--text-primary);
+  background-color: #ffffff;
+}
+
+/* Right side of item (Actions) */
+.todo-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-action {
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: var(--transition-fast);
+}
+
+.btn-action:hover {
+  background-color: #f2f2f7;
+  color: var(--text-primary);
+}
+
+.btn-action.btn-delete:hover {
+  background-color: #ffe5e5;
+  color: var(--error-color);
+}
+
+.btn-action.btn-save:hover {
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+}
+
+.btn-action svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ==========================================
+   Empty State
+   ========================================== */
+.empty-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--text-secondary);
+  animation: fadeIn var(--transition-normal);
+}
+
+.empty-state.visible {
+  display: flex;
+}
+
+.empty-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.empty-state p {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
