@@ -75,3 +75,8 @@
 ## 🎯 다음 주 목표
 - [ ] HTML/CSS/JS 화면에서 FastAPI 백엔드 API를 호출해 동적으로 데이터를 주고받기
 - [ ] 관계형 데이터베이스에서 조금 더 복잡한 N:M 관계의 JOIN 문을 자유롭게 구사하기
+
+---
+
+## 🔗 관련 GitHub 저장소 링크
+- [KTC 2주차 학습 노트 (GitHub)](https://github.com/softkleenex/KTC/tree/main/KTC_note/2%EC%A3%BC%EC%B0%A8)

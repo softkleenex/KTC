@@ -33,3 +33,7 @@
 - [ ] 카테캠 학습용 옵시디언 구조 및 문서화 
 - [ ] 가능하다면,,, 출석관련으로 멘토분께 여쭤보자
 
+---
+
+## 🔗 관련 GitHub 저장소 링크
+- [KTC 1주차 학습 노트 (GitHub)](https://github.com/softkleenex/KTC/tree/main/KTC_note/1%EC%A3%BC%EC%B0%A8)

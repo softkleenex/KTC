@@ -35,3 +35,9 @@
 ## 🎯 다음 주 목표
 - [ ] 주중에 4주차 학습 분량을 균등하게 나누어 밀리지 않고 완수하기
 - [ ] 이번 주 제대로 학습하지 못하고 빠르게 훑고 넘어간 React Custom Hook의 심화 개념 구조를 로컬에서 예제로 직접 재구현해보기
+
+---
+
+## 🔗 관련 GitHub 저장소 링크
+- [KTC 3주차 학습 노트 (GitHub)](https://github.com/softkleenex/KTC/tree/main/KTC_note/3%EC%A3%BC%EC%B0%A8)
+
