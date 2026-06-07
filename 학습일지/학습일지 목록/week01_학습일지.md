@@ -1,3 +1,5 @@
+# week01_제대로 된 카테캠의 시작 #2
+
 ## 🗓 이번 주 개요
 - 주차: Week 01
 - 키워드: [#Python](https://github.com/softkleenex/KTC/issues/2#Python) [#Asyncio](https://github.com/softkleenex/KTC/issues/2#Asyncio) [#Network](https://github.com/softkleenex/KTC/issues/2#Network) [#HTTP](https://github.com/softkleenex/KTC/issues/2#HTTP) [#RESTAPI](https://github.com/softkleenex/KTC/issues/2#RESTAPI) [#Database](https://github.com/softkleenex/KTC/issues/2#Database) [#SQL](https://github.com/softkleenex/KTC/issues/2#SQL) [#ERD](https://github.com/softkleenex/KTC/issues/2#ERD)
