@@ -1,4 +1,4 @@
-# week03_바닐라 JS에서 선언적 React의 세계로, 컴포넌트 분리와 상태 관리
+# week03_바닐라 JS를 넘어 React와 Tailwind 맛보기
 
 ## 🗓 이번 주 개요
 - 주차: Week 03
