@@ -1,3 +1,5 @@
+# week03_바닐라 JS에서 선언적 React의 세계로, 컴포넌트 분리와 상태 관리
+
 ## 🗓 이번 주 개요
 - 주차: Week 03
 - 키워드: #DOM #Async #React #useState #useEffect #Component #Props #LiftingStateUp #TailwindCSS
@@ -40,4 +42,3 @@
 
 ## 🔗 관련 GitHub 저장소 링크
 - [KTC 3주차 학습 노트 (GitHub)](https://github.com/softkleenex/KTC/tree/main/KTC_note/3%EC%A3%BC%EC%B0%A8)
-
