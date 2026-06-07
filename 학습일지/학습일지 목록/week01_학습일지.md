@@ -1,6 +1,6 @@
 ## 🗓 이번 주 개요
 - 주차: Week 01
-- 키워드: #Python #Asyncio #Network #HTTP #RESTAPI #Database #SQL #ERD
+- 키워드: [#Python](https://github.com/softkleenex/KTC/issues/2#Python) [#Asyncio](https://github.com/softkleenex/KTC/issues/2#Asyncio) [#Network](https://github.com/softkleenex/KTC/issues/2#Network) [#HTTP](https://github.com/softkleenex/KTC/issues/2#HTTP) [#RESTAPI](https://github.com/softkleenex/KTC/issues/2#RESTAPI) [#Database](https://github.com/softkleenex/KTC/issues/2#Database) [#SQL](https://github.com/softkleenex/KTC/issues/2#SQL) [#ERD](https://github.com/softkleenex/KTC/issues/2#ERD)
 
 ## 📚 이번 주 학습한 것
 ### 1. 파이썬 비동기 프로그래밍 (asyncio)
