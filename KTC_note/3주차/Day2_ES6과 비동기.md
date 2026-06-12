@@ -542,3 +542,255 @@ const intervalId = setInterval(() => {
 
 ---
 ### 05_Promise
+
+---
+
+
+### Promise란?
+
+기본적인 비동기 처리의 한계
+- 콜 스택이 빈 후에 콜백 함수가 호출되기 때문에 처리 결과를 활용할 수 없다.
+- 또한 당장은 에러가 발생하지 않기 때문에, 에러처리 학습을 정상적으로 할 수 없다.
+
+Promise를 이용해 위의 문제를 모두 해결하며 비동기 처리를 진행 할 수 있다.
+
+---
+### Promise 생성
+
+
+**`newPromise`** 와 같이 new 키워드를 통해 Promise 객체를 생성한다. 이때 콜백함수가 무조건 인자로 넘겨져야 한다.
+콜백함수에는 **`resolve`**, 와  **`reject`** 함수가 인수로 전달된다.
+- resolve: 비동기 처리의 성공을 나타냄
+- reject: 비동기 처리의 실패를 나타냄
+
+```
+const promise = new Promise((resolve, reject) =?
+{
+setTimeout(() => {
+console.log("Hello Elice");
+}, 1000)
+```
+
+---
+### Promise 상태
+
+처리 상태에 따라 다음 세가지중 하나의 상태를 가진다. 상태 변화는 pending -> fulfilled, pending -> rejected의 경우만 있다.
+
+| 상태        | 설명                 |
+| --------- | ------------------ |
+| pending   | 비동기 처리가 완료되기 전, 대기 |
+| fulfilled | 비동기 처리가 완료되었으며, 성공 |
+| rejected  | 비동기 처리가 완료되었으며, 실패 |
+
+Promise의 콜백함수로 전달되는 resolve, reject를 실행하면 resolve는 fulfilled로,  reject는 rejected로 Promise의 상태를 변화시킨다. 또한 그떄 전달한 값이 결과값이 된다.
+- resolve: 비동기 처리의 성공을 나타냄
+- reject: 비동기 처리의 실패를 나타냄
+
+---
+### Promise 처리
+
+
+Promise는 아래의 세가지 메서드를 가진다. 이를 이용해여 비동기 처리 완료 이후의 처리를 진행하고, 각 메서드는 모두 Promise 객체를 반환한다.
+
+|**메서드**|**설명**|
+|---|---|
+|`.then(r => { ... }, e => { ... })`|비동기 성공 및 실패 후 처리|
+|`.catch(e => { ... })`|비동기 실패 후 처리|
+|`.finally(() => { ... })`|비동기 성공/실패 여부 관계 없이 이후 처리|
+각각의 인수
+**then**: 두가지 콜백함수(비동기 성공시의 처리(인수 : resolve 함수 호출시에 넘긴 값), 비동기 실패시의 처리(인수: reject 함수 호출 시 넘긴 값))
+**catch**: 비동기 실패시 처리를 위한 콜백 함수(인수: reject 함수 호출 시 넘긴 값)
+**finally**: 비동시 성공/실패 여부와 관계겂이 실행될 콜백 함수.(인수: 무조건 실행되어야 하므로 없음)
+
+then, catch, finally는 보통 메서드 체이닝을 통해 같이 사용된다.(각 메서드는 Promise를 반환하므로 체이닝이 가능하다.)
+
+---
+### Promise 메서드
+
+
+**Promise.resolve**
+인수로 전달 받은 값을 resolve 하는 프로미스를 반환 받는다
+
+```
+const resolvedPromise = Promise.resolve("Hello Elice");
+// 아래 코드와 동일하다:
+const resolvedPromise = new Promise((resolve, reject) => resolve("Hello Elice"));
+
+resolvedPromise.then((result) => { console.log(result); }); // 'Hello Elice'
+```
+
+**Promise.reject**
+인수로 전달받은 값을 reject 하는 프로미스를 반환받을 수 있다.
+```
+const rejectedPromise = Promise.reject("Elice Rejected");
+// 아래 코드와 동일하다:
+const rejectedPromise = new Promise((resolve, reject) => reject("Elice Rejected"));
+
+rejectedPromise.catch((error) => { console.log(`error: ${error}`); }); // 'error: Elice Rejected'
+```
+
+**Promise.all**
+여러 Promise를 병렬적으로 처리할 수 있다.(인수로 여러 Promise 객체가 담긴 배열을 전달한다.)
+인수로 전달된 모든 Promise가 resolve된 이후에 then으로 넘어간다. 이때 각 Promise의 결과는 배열의 형태로 전달된다.
+
+```
+// 비동기 작업을 시뮬레이션하는 함수
+function fetchData(url, delay) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(`Data from ${url}`);
+    }, delay);
+  });
+}
+```
+
+```
+// Promise.all을 사용하여 모든 비동기 작업이 완료될 때까지 기다림
+Promise.all([
+  fetchData('https://api.example.com/data1', 1000),
+  fetchData('https://api.example.com/data2', 2000),
+  fetchData('https://api.example.com/data3', 1500)
+])
+  .then((results) => {
+    console.log('All promises resolved:');
+    results.forEach((result, index) => {
+      console.log(`Result ${index + 1}: ${result}`);
+    });
+  })
+  .catch((error) => {
+    console.error('One of the promises failed:', error);
+  });
+```
+
+- **Promise.all 실패시 동작**
+  Fail_Fast의 특징을 가지고있다.
+  인수로 전달된 Promise중 하나라도 reject되면, 나머지  결과를 기자리지 않고 즉시 전체가 reject 된다.
+  catch에는 가장 먼저 실패한 Promise의 reject 값이 전달된다.
+
+**Promise.allSettled**
+성공/실패 여부와 관계 없이 모든 Promise가 완료될 때까지 기다린다.
+
+
+
+```
+function fetchData(url, delay) {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(`Data from ${url}`), delay);
+  });
+}
+
+Promise.allSettled([
+  fetchData('https://api.example.com/data1', 1000),
+  Promise.reject('data2 실패!'),
+  fetchData('https://api.example.com/data3', 1500)
+]).then((results) => {
+  results.forEach((result, i) => {
+    if (result.status === 'fulfilled') {
+      console.log(`${i+1}: 성공 -`, result.value);
+    } else {
+      console.log(`${i+1}: 실패 -`, result.reason);
+    }
+  });
+});
+```
+각 결과는 다음 두 형태중 하나. {status: 'fulfilled', value:...} or {status: 'rejected', reson:...}
+
+Promise.al과 Promise.allSettled를 비교해보면,
+
+
+||**Promise.all**|**Promise.allSettled**|
+|---|---|---|
+|**하나 실패 시**|즉시 전체 reject|끝까지 기다림|
+|**반환값**|성공 값들의 배열|status 객체들의 배열|
+|**사용 시점**|모두 성공해야 의미 있을 때 (모든 작업이 독립적이고 병렬 실행이 가능할 때)|일부 실패를 허용할 때|
+|**동작 방식**|**Fail-Fast**|**Wait-All** (모두 완료까지 대기)|
+
+---
+### 마이크로태스크 큐
+
+Promise 를 추가해서, 코드의 작동순서를 생각해보자.
+
+![[Pasted image 20260608223321.png]]
+
+비동기 동작원리를 고려하면 1 -> 2 -> 4 -> 3 의 순서겠지만, 실제로는 1 ->2 -> 3-> 4 이다.
+그 이유는 **마이크로 태스트 큐.**
+
+마이크로 태스크 큐
+- 브라우저에 call stack, task queue 외에 존재하는 세번째 공간. 대스크 큐보다 우선순위가 더 높다.
+- 즉, 마이크로태스크 큐에서 대기중인 작업이 먼저 콜 스택으로 들어가고, 마이크로 태스크 큐가 비면 태스크 큐의 작업이 콜 스택으로 들어간다.
+
+| **종류**    | **저장하는 비동기 처리 작업** |
+| --------- | ------------------ |
+| 마이크로태스크 큐 | Promise, Ajax      |
+| 태스크 큐     | 타이머 함수, 이벤트 핸들러 함수 |
+
+---
+## 06_async/await
+
+---
+### async, await문법
+
+Promise의 문제 : 비동기 처리를 위해 체이닝이 계속되면 가독성이 좋지않다. 이를 해결하기 위해 ES8부터 도입된 async/await 문법을 사용해, 비동기 처리를 훨씬 깔끔하게 작성할 수 있다.
+
+**await**: 해당 비동기 처리가 완료될 때까지 기다린 후, resolve 된 값을 반환한다. 무조건 async 함수 내부에서만 사용할 수 있다.
+```
+async function fetchData() {
+    try {
+        const data = await fetchData('https://api.example.com/data1');
+        console.log(data);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+fetchData();
+```
+
+**async**: 항상 반환값을 resolve 하는 Promise를 반환한다.
+
+```
+// 일반 함수
+async function square(n) { return n * n; }
+square(3).then(result => console.log(result)); // 9
+
+// 화살표 함수
+const double = async (n) => { return n * 2; }
+double(5).then(result => console.log(result)); // 10
+```
+
+---
+### 예외 처리
+
+개요: 모든 프로그램은 에러 발생 가능성이 존재하며, 발생시 프로그램은 종료된다. 종료 방지를 위해 예외 상황에 최대한 대응하는 코드를 작성해야한다.
+
+async/awit 사용시에는 try ... catch ... finally 문을 사용하여 예외 처리를 진행한다.
+
+
+```
+async function fetchData() {
+    try {
+        const data = await fetchData('https://api.example.com/data1');
+        console.log(data);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+fetchData();
+```
+
+기본적으로 try ... catch 문을 이용해 예외를 처리할 수 있다. (try 단독 사용 불가)
+또한 finally 문을 추가해 에러 여부와 상관없이 실행되는 코드를 작성할 수 있다.
+```
+const jsonString = '{"name": "John", "age": 30'; // JSON 형식에 맞지 않음
+
+try {
+  JSON.parse(jsonString); // SyntaxError
+} catch (err) {
+  console.log(err);
+} finally {
+  console.log("JSON 처리 완료");
+}
+```
+
+---
