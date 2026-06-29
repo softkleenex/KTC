@@ -1,0 +1,32 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: todo-db
+    environment:
+      MYSQL_USER: todo_user
+      MYSQL_PASSWORD: todo_pass
+      MYSQL_DATABASE: todo_db
+      MYSQL_ROOT_PASSWORD: root_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "todo_user", "-ptodo_pass"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  web:
+    build: .
+    container_name: todo-web
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-mysql+pymysql://todo_user:todo_pass@db:3306/todo_db}
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  mysql_data:
