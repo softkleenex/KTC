@@ -4,21 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "1104c2a67981d6ec",
+        "id": "56c1fc3f6e80cb1f",
         "type": "tabs",
         "children": [
           {
-            "id": "fb8c4748d3a19739",
+            "id": "8a43e56edaf968c7",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "KTC_note/4주차/Day3_Next.js 기초 & 데이터 처리 복습.md",
-                "mode": "preview",
-                "source": false
+                "file": "KTC_note/4주차/강의자료/[수업 자료] 풀스택 통합 실습.pdf"
               },
-              "icon": "lucide-file",
-              "title": "Day3_Next.js 기초 & 데이터 처리 복습"
+              "icon": "lucide-file-text",
+              "title": "[수업 자료] 풀스택 통합 실습"
             }
           }
         ]
@@ -183,19 +181,27 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "fb8c4748d3a19739",
+  "active": "67fbcb25e3dbddf6",
   "lastOpenFiles": [
-    "KTC_code/fullstack-practice/backend/blog.db",
-    "KTC_code/fullstack-practice/backend/__pycache__/main.cpython-314.pyc",
-    "KTC_code/fullstack-practice/backend/__pycache__",
-    "KTC_code/fullstack-practice/frontend/node_modules/next/dist/compiled/@vercel/og/yoga.wasm",
-    "KTC_code/fullstack-practice/frontend/node_modules/next/dist/compiled/@vercel/og/resvg.wasm",
-    "KTC_code/fullstack-practice/frontend/node_modules/next/dist/compiled/source-map08/mappings.wasm",
-    "KTC_code/fullstack-practice/frontend/node_modules/next/dist/compiled/@edge-runtime/primitives/url.js.LEGAL.txt",
-    "KTC_code/fullstack-practice/frontend/node_modules/next/dist/compiled/@edge-runtime/primitives/timers.js.LEGAL.txt",
-    "KTC_code/fullstack-practice/frontend/node_modules/next/dist/compiled/@edge-runtime/primitives/stream.js.LEGAL.txt",
-    "KTC_code/fullstack-practice/frontend/node_modules/next/dist/compiled/@edge-runtime/primitives/load.js.LEGAL.txt",
-    "KTC_code/fullstack-practice/frontend/node_modules/next/dist/compiled/@edge-runtime/primitives/index.js.LEGAL.txt",
+    "학습일지/학습일지 목록/week05_학습일지.md",
+    "KTC_note/5주차/수업자료/카카오 테크 캠퍼스 5주차.md",
+    "학습일지/학습일지 목록/week04_피드백.txt",
+    "학습일지/week04_피드백.txt.sb-1cef4177-KlgPJ9",
+    "학습일지/week04_피드백.txt",
+    "학습일지/week03_피드백.txt",
+    "KTC_note/5주차/수업자료/[수업 자료] Docer Compose (1).pdf",
+    "KTC_note/5주차/수업자료/[수업 자료] Docer Compose (1).pdf.crdownload",
+    "KTC_note/5주차/수업자료/[수업 자료] Docer Compose.pdf",
+    "KTC_note/5주차/수업자료/[수업 자료] Docer Compose.pdf.crdownload",
+    "KTC_note/5주차/수업자료/[수업 자료] Docker 컨테이너 기초.pdf.pdf",
+    "KTC_note/5주차/수업자료/[수업 자료] Docker 컨테이너 기초.pdf.pdf.crdownload",
+    "KTC_note/4주차/Day2_Next.js 데이터 처리와 최적화.md",
+    "KTC_code/week5-day5/todo-fastapi-compose-student-nginx-version/README.md",
+    "KTC_code/week5-day5/todo-fastapi-compose-student/README.md",
+    "KTC_code/temp_repo/README.md",
+    "KTC_note/4주차/Day1_Next.js 기초와 렌더링.md",
+    "KTC_note/3주차/Day5_Github 협업.md",
+    "KTC_note/4주차/Day3_Next.js 기초 & 데이터 처리 복습.md",
     "KTC_code/fullstack-practice/frontend/node_modules/next/README.md",
     "KTC_code/fullstack-practice/frontend/node_modules/next/dist/compiled/regenerator-runtime/README.md",
     "KTC_code/fullstack-practice/frontend/node_modules/next/dist/compiled/react-refresh/README.md",
@@ -212,14 +218,6 @@
     "KTC_code/fullstack-practice/frontend/node_modules/next/node_modules/postcss/README.md",
     "KTC_code/fullstack-practice/frontend/node_modules/sharp/README.md",
     "KTC_code/fullstack-practice/frontend/node_modules/@img/colour/README.md",
-    "KTC_code/fullstack-practice/frontend/node_modules/@img/colour/LICENSE.md",
-    "KTC_code/fullstack-practice/frontend/node_modules/@img/sharp-darwin-arm64/README.md",
-    "KTC_code/fullstack-practice/frontend/node_modules/styled-jsx/readme.md",
-    "KTC_code/fullstack-practice/frontend/node_modules/styled-jsx/license.md",
-    "KTC_code/fullstack-practice/frontend/node_modules/postcss/README.md",
-    "KTC_code/fullstack-practice/frontend/node_modules/@next/env/README.md",
-    "KTC_code/fullstack-practice/frontend/node_modules/react/README.md",
-    "KTC_code/fullstack-practice/frontend/node_modules/@types/node/README.md",
-    "KTC_code/fullstack-practice/frontend/node_modules/@types/react/README.md"
+    "KTC_code/fullstack-practice/frontend/node_modules/@img/colour/LICENSE.md"
   ]
 }
