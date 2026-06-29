@@ -1,4 +1,0 @@
-
----
-## Fastapi & Pydantic
-
