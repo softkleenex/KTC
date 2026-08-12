@@ -54,3 +54,5 @@ out/
 *.sqlite3
 __pycache__/
 .pytest_cache/
+# Obsidian 로컬 작업 상태
+.obsidian/workspace.json

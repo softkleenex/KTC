@@ -1,0 +1,241 @@
+<aside>
+😊
+
+앞으로 6주간 진행될 클론코딩 프로젝트에서 PR은 언제 올리고, 리뷰는 언제 받을 수 있는지 등 과제를 수행하면서 여러분들이 챙겨주셔야 할 일정들을 안내드립니다.
+
+> **한줄 요약**: 본인 학교 repo에 **규칙대로 PR만 열면**, 멘토 리뷰어 지정·Discord 알림은 시스템이 알아서 합니다. **조 번호도, 담당 멘토도 외울 필요 없어요.**
+> 
+</aside>
+
+## 주차별 PR 일정
+
+### 1주차 (월/목 강의)
+
+---
+
+|  | **월** | **화** | **수** | **목** | **금** | **토** | **일** | **월** | **화** |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **쿠키즈** | 강의
+(미션 부여!) | 1차 PR 마감 (22:00) |  | 강의 |  | 2차 PR 마감 (10:00) |  |  | 머지 마감 (18:00) |
+| **멘토** |  |  |  | 1차 리뷰 마감 (10:00) |  |  |  | 2차 리뷰 마감 (10:00) |  |
+
+### 2~6주차 (화/금 강의)
+
+---
+
+|  | **화** | **수** | **목** | **금** | **토** | **일** | **월** | **화** |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **쿠키즈** | 강의
+(미션 부여!) | 1차 PR 마감 (22:00) |  | 강의 |  | 2차 PR 마감 (10:00) |  | 머지 마감 (18:00) |
+| **멘토** |  |  |  | 1차 리뷰 마감 (10:00) |  |  |  | 2차 리뷰 마감 (10:00) |
+
+---
+
+## 0. 어디까지가 자동인가요?
+
+| 여러분이 하는 일 | 시스템이 자동으로 |
+| --- | --- |
+| 규칙대로 PR 열기 **`1차 PR`** | 담당 멘토 리뷰어 자동 지정(보통 30초 내) + Discord 멘토 호출 |
+| (수정 요청 시) 고쳐서 push → **↻ 재리뷰 요청 `2차 PR`** | Discord로 멘토 재호출 |
+| Approved 받으면 머지 | 리뷰 결과를 Discord로 **여러분에게** 알림 |
+
+→ **리뷰어 직접 추가 안 해도 됩니다.** 담당 멘토는 2주마다 바뀌지만 전부 자동 매핑돼요.
+
+---
+
+## 1. 처음 한 번만 하는 준비 (3가지)
+
+### 1-1. GitHub Org 초대 수락
+
+`kakaotechcampus-4` Org 초대 메일 → **Accept**. 수락해야 본인 학교 repo에 push할 수 있어요.
+
+> 학교 repo는 모두 **공개**라 다른 학교 것도 볼 수는 있지만, **push는 본인 학교 하나뿐**(타교는 읽기 전용). 작업은 본인 학교에서만 하면 됩니다.
+> 
+
+### 1-2. push 인증 (한 번만)
+
+repo가 공개라 **clone은 인증 불필요**, `git push`만 인증이 필요해요. 제일 간단한 건 GitHub CLI 로그인:
+
+```bash
+gh auth login
+# GitHub.com → HTTPS → "Login with a web browser" → 화면의 코드 입력
+```
+
+- `gh` 설치: macOS `brew install gh` / Windows `winget install GitHub.CLI` (또는 https://cli.github.com).
+
+### 1-3. 본인 학교 repo clone
+
+**Code** 버튼 → HTTPS 주소 복사:
+
+```bash
+git clone https://github.com/kakaotechcampus-4/<학교>-clone.git
+cd <학교>-clone
+```
+
+> `main`에 **베이스 코드**가 이미 들어 있어요. 여기서 시작하면 됩니다. (SSH는 `git@github.com:...` 주소로 clone 해도 OK.)
+> 
+
+### 1-4. 내 작업 본진 브랜치 만들기 ★
+
+주차별 작업이 모일 **본인 전용 통합 브랜치** `<이름>/final`을 하나 만듭니다.
+
+```bash
+git checkout main && git pull
+git checkout -b <이름>/final
+git push -u origin <이름>/final
+```
+
+> ⚠️ `<이름>`은 본인을 구분하는 식별자예요 — **이름 로마자**(성+이름 붙여 소문자, 예: 김춘식 → `kimchunsik`)를 권장합니다. 값 자체가 어딘가와 매칭되는 건 아니고, 중요한 건 **`<이름>/weekN` → `<이름>/final` 컨벤션을 일관되게** 지키는 것(현황판이 이 구조로 PR을 인식).
+> 
+
+### 1-5. Org, Repo 구조
+
+그대로 진행하시면 아래와 같은 구조로 브랜치가 쌓이게 됩니다.
+
+***Github Organization 구조**
+
+```
+kakaotech-campus-4 (Public)
+├── kakao_clone_coding_lecture    주차별 강의내용(.md) + 강의자료(.ipynb)
+├── kangwon-clone                 강원대
+├── kyungpook-clone               경북대
+├── pusan-clone                   부산대
+├── chonnam-clone                 전남대
+└── chungnam-clone                충남대
+```
+
+***학교별 Repository 구조**
+
+```
+(예: kangwon-clone)
+
+main (베이스코드, 보호 브랜치)
+├── jieunlim/final     ← 개인 누적 결과물
+├── jieunlim/week1     → final로 PR
+├── jieunlim/week2     → final로 PR
+├── ...
+├── minjikim/final
+└── ...
+```
+
+---
+
+## 2. 매주 반복하는 PR 흐름
+
+**브랜치 이름 규칙을 꼭 지켜주세요** — 현황판이 이 패턴으로만 PR을 인식합니다.
+
+| 무엇 | 규칙 | 예시 |
+| --- | --- | --- |
+| 작업 본진 (PR 받는 쪽) | `<이름>/final` | `kimchunsik/final` |
+| 주차 작업 (PR 보내는 쪽) | `<이름>/week<N>` | `kimchunsik/week1` |
+
+### ① 이번 주차 브랜치 따서 작업
+
+```bash
+git checkout <이름>/final && git pull
+git checkout -b <이름>/week1        # 2주차면 week2 ...
+git add . && git commit -m "week1: 구현 요약"
+git push -u origin <이름>/week1
+```
+
+### ② PR 만들기 (GitHub 웹)
+
+push하면 뜨는 **"Compare & pull request"** 배너(또는 Pull requests 탭 → New) 클릭:
+
+```
+base:    <이름>/final      ←★ 반드시 본인 final 로 (기본값 main 을 꼭 바꾸기)
+compare: <이름>/week1
+```
+
+> ⚠️ **base를 `main`으로 두면 안 됩니다.** main은 잠겨 있어(머지 권한 없음 + 현황판이 `weekN→final` 패턴만 인식) 결국 다시 열어야 해요. 실수로 main으로 열었으면 그 PR을 **Close**하고 base를 `<이름>/final`로 다시 열면 됩니다.
+> 
+
+PR 본문에 **양식이 미리 채워져** 있어요(목표·구현·KPT 회고). 빈칸 채우듯 적으면 멘토 리뷰가 수월합니다.
+
+### ③ PR을 열면 (자동, ≤30초)
+
+- **담당 멘토가 리뷰어로 자동 지정** ("{멘토} requested your review").
+- Discord **`pr-alert-<학교>`** 채널에 **@담당멘토 + PR 링크** 알림.
+
+→ 멘토 리뷰를 기다리면 됩니다. 리뷰어 직접 추가 X.
+
+### ④ 멘토 리뷰가 오면
+
+Discord에서 **여러분이 @호출**되고 결과가 이모지로 표시돼요:
+
+| 표시 | 의미 | 할 일 |
+| --- | --- | --- |
+| ✅ **Approved** | 통과 | `<이름>/final`로 머지 |
+| ⚠️ **Changes Requested** | 수정 필요 | 같은 브랜치에 고쳐서 push → **↻ 재리뷰 요청**(아래) |
+| 💬 Comment | 단순 코멘트 | (개인 알림 안 갈 수 있음 — GitHub에서 확인) |
+
+수정 요청 시 **새 PR을 만들지 말고** 같은 `<이름>/weekN`에 이어서 commit + push 하면 기존 PR이 자동 갱신됩니다.
+
+**↻ 재리뷰 요청 (꼭!)**: 수정 push만으로는 **멘토 알림이 안 가요**. PR 오른쪽 Reviewers에서 멘토 이름 옆 **↻ (Re-request review)** 아이콘을 눌러야 "🔁 재리뷰 요청" 알림이 갑니다. (↻는 멘토가 Changes Requested를 남긴 뒤 나타나요.)
+
+### ⑤ Approved → 머지
+
+PR의 초록 **"Merge pull request"** → **Confirm merge**. 이번 주차 작업이 `<이름>/final`에 합쳐집니다. 다음 주차는 다시 ①번부터.
+
+---
+
+## 3. 자주 묻는 질문
+
+**Q. `gh`를 꼭 써야 하나요?**
+
+> 아니요. `git push` 인증만 되면 됩니다. SSH 키·토큰 쓰면 그대로 OK(1-2). PR·머지·재리뷰는 전부 웹 버튼.
+> 
+
+**Q. 리뷰어를 직접 지정하나요?**
+
+> 아니요. PR 열면 자동 지정돼요. 담당 멘토 누군지 몰라도 됩니다(2주마다 자동 로테이션).
+> 
+
+**Q. PR 열었는데 30초 지나도 리뷰어가 안 붙어요.**
+
+> 먼저 **Draft PR로 연 건 아닌지** 확인. 아니면 명부에 본인 GitHub 아이디가 아직 없을 수 있어요 — 담임 매니저에게 **GitHub 아이디**를 알려주면 즉시 반영됩니다.
+> 
+
+**Q. Draft로 열었더니 멘토가 안 붙어요.**
+
+> 정상이에요. Draft는 "준비 안 됨"으로 봐서 배정 안 해요. **"Ready for review"** 버튼을 누르면 그때 지정+알림이 갑니다.
+> 
+
+**Q. Discord 알림은 오는데 제가 @로 안 불려요.**
+
+> 시스템이 서버 닉네임으로 계정을 찾는데, 닉네임이 운영 컨벤션과 다르면 호출이 안 될 수 있어요. 담임 매니저에게 알려주세요.
+> 
+
+**Q. 다른 학교 repo가 보여요.**
+
+> 공개라 구경은 OK, **push는 본인 학교만**(타교 읽기 전용). 작업은 본인 학교에서만.
+> 
+
+**Q. push가 거부돼요 / fork 하라고 떠요.**
+
+> ① Org 초대 수락(1-1) → ② 인증 확인(1-2: `gh auth status` 또는 `ssh -T git@github.com`). 그래도 안 되면 담임 매니저 문의.
+> 
+
+**Q. base를 `main`으로 잘못 열었어요 / 수정했는데 멘토에게 알림이 안 가요.**
+
+> 전자는 PR Close 후 base=`<이름>/final`로 다시 열기. 후자는 **↻ (Re-request review)** 클릭(둘 다 2번 참고).
+> 
+
+---
+
+## 4. 치트시트
+
+```
+[처음 한 번]  Org 초대 수락 → gh auth login(또는 본인 인증) → repo clone → <이름>/final 브랜치 생성
+[매 주차]     final 에서 weekN 따기 → 작업 → commit → push → 웹에서 PR (base = 본인 final ★)
+[그다음 자동] 멘토 리뷰어 지정 + Discord 알림 → 결과 알림(✅/⚠️)
+              ⚠️ 면 같은 브랜치에 push + ↻ 재리뷰 요청 / ✅ 면 웹에서 Merge
+```
+
+막히면 언제든 **카테캠 인프라 매니저 Peter(평일 10–19시)**에게 편하게 물어보세요 🙌
+
+## Appendix. PR 코드리뷰 가이드 영상
+
+---
+
+github-review-introduction-kookies.mp4
